@@ -69,7 +69,7 @@ class _Pag1State extends State<Pag1> with SingleTickerProviderStateMixin {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Sua Nota !!!',
+              'Preco !!!',
             ),
             Text(
               '',
