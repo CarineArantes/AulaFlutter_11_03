@@ -11,7 +11,10 @@ class _Pag2State extends State<Pag2> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
   String _name = "";
-  String _nota = "";
+  String _nota1 = "";
+  String _nota2 = "";
+  String _nota3 = "";
+  String _nota4 = "";
   String _resp = "";
 
   @override
@@ -27,18 +30,14 @@ class _Pag2State extends State<Pag2> with SingleTickerProviderStateMixin {
   }
 
   void _verification() {
-    var calc = double.tryParse(_nota.replaceAll(',', "."));
+    var n1 = double.tryParse(_nota1.replaceAll(',', "."));
+    var n2 = double.tryParse(_nota2.replaceAll(',', "."));
+    var n3 = double.tryParse(_nota3.replaceAll(',', "."));
+    var n4 = double.tryParse(_nota4.replaceAll(',', "."));
+    var calc = (n1! + n2! + n3! + n4!) / 4;
     setState(() {
-      if (calc != null) {
-        if (calc >= 6) {
-          _resp = "Resultado: $_name foi aprovado!";
-        } else {
-          _resp = "Resultado: $_name foi reprovado!";
-        }
-      }else {
-        _resp = "";
-      }  
-    });    
+      _resp = "Resultado: $_name obteve a media de $calc";
+    });
   }
 
   @override
@@ -82,10 +81,10 @@ class _Pag2State extends State<Pag2> with SingleTickerProviderStateMixin {
                     child: TextField(
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Nota:',
+                        labelText: 'Nota 1:',
                       ),
                       onChanged: (value) {
-                        _nota = value;
+                        _nota1 = value;
                       },
                     )),
               ],
@@ -94,9 +93,60 @@ class _Pag2State extends State<Pag2> with SingleTickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  margin: const EdgeInsets.all(15),
-                  width: 500,
-                  child: Text(_resp)),
+                    margin: const EdgeInsets.all(15),
+                    width: 500,
+                    child: TextField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Nota 2:',
+                      ),
+                      onChanged: (value) {
+                        _nota2 = value;
+                      },
+                    )),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                    margin: const EdgeInsets.all(15),
+                    width: 500,
+                    child: TextField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Nota 3:',
+                      ),
+                      onChanged: (value) {
+                        _nota3 = value;
+                      },
+                    )),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                    margin: const EdgeInsets.all(15),
+                    width: 500,
+                    child: TextField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Nota 4:',
+                      ),
+                      onChanged: (value) {
+                        _nota4 = value;
+                      },
+                    )),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                    margin: const EdgeInsets.all(15),
+                    width: 500,
+                    child: Text(_resp)),
               ],
             ),
             ElevatedButton(
